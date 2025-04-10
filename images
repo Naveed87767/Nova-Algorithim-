@@ -1,9 +1,0 @@
-your-website-folder/
-├── index.html
-├── images/
-│   ├── dashboard.webp
-│   ├── Nova Algo image 1 git.webp
-│   ├── client-1.webp
-│   └── ...
-└── css/
-    └── style.css
