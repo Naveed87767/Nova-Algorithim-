@@ -1,0 +1,9 @@
+your-website-folder/
+├── index.html
+├── images/
+│   ├── dashboard.webp
+│   ├── gold-trade.webp
+│   ├── client-1.webp
+│   └── ...
+└── css/
+    └── style.css
