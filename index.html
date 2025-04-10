@@ -383,125 +383,81 @@
         </div>
     </section>
 
-    <!-- Payment Modal -->
-    <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content payment-form">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title text-gold">Complete Your Purchase</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+  <!-- Payment Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content payment-form">
+            <div class="modal-header border-0">
+                <h5 class="modal-title text-gold">Complete Your Purchase</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Step 1: User Information Form -->
+                <form id="paymentForm">
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="userName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="userEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">WhatsApp Number</label>
+                        <input type="tel" class="form-control" id="userPhone" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-gold py-3">PROCEED TO PAYMENT</button>
+                    </div>
+                </form>
+                
+                <!-- Step 2: Payment Instructions (Initially Hidden) -->
+                <div id="paymentInstructions" style="display: none;">
+                    <h4 class="text-center text-gold mb-4">Pay with USDT (TRC20)</h4>
+                    
+                    <div class="text-center mb-4">
+                        <img src="images/binance-qr.webp" alt="Binance QR Code" class="img-fluid rounded" style="max-width: 250px; border: 2px solid var(--gold);">
+                        <p class="mt-2">Scan to pay $70 USDT</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5 class="text-gold mb-2">TRC20 Wallet Address:</h5>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="trc20Address" value="TYsqSxWLuZimQ7Qe9mTsUZyPv2Lk7VgXeK" readonly>
+                            <button class="btn btn-gold" onclick="copyTRC20Address()">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-dark">
+                        <h5 class="text-gold">Instructions:</h5>
+                        <ol>
+                            <li>Send exactly <strong>$70 USDT</strong> via TRC20</li>
+                            <li>After payment, click below to confirm</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button class="btn btn-gold" onclick="showWhatsAppSection()">
+                            <i class="fas fa-check-circle"></i> I've Paid
+                        </button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form id="paymentForm">
-                        <div class="mb-3">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Email Address</label>
-                            <input type="email" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" required>
-                        </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-gold py-3">PROCEED TO PAYMENT</button>
-                        </div>
-                    </form>
+                
+                <!-- Step 3: WhatsApp Confirmation (Initially Hidden) -->
+                <div id="whatsappSection" style="display: none;">
+                    <div class="text-center">
+                        <i class="fas fa-check-circle text-success" style="font-size: 3rem;"></i>
+                        <h4 class="text-gold mt-3">Payment Received!</h4>
+                        <p>Please send payment proof via WhatsApp for activation</p>
+                        
+                        <a id="whatsappLink" href="#" class="btn btn-success mt-3">
+                            <i class="fab fa-whatsapp"></i> Send on WhatsApp
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="footer py-4">
-        <div class="container text-center">
-            <p class="mb-0">&copy; 2023 NOVA Algorithm. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Simple form submission handler
-        document.getElementById('paymentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // In a real implementation, you would process payment here
-            alert('Payment processing would happen here! Redirecting to payment gateway...');
-            // window.location.href = "your-payment-gateway-url.com";
-        });
-    </script>
-</body>
-</html>       
-<script>
-    // Form submission handler
-    document.getElementById('paymentForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get user details
-        const userName = document.getElementById('userName').value;
-        const userEmail = document.getElementById('userEmail').value;
-        const userPhone = document.getElementById('userPhone').value;
-        
-        if(userName && userEmail && userPhone) {
-            // Hide form and show payment instructions
-            document.getElementById('paymentForm').style.display = 'none';
-            document.getElementById('paymentInstructions').style.display = 'block';
-            
-            // Store user details for WhatsApp message
-            sessionStorage.setItem('novaUser', JSON.stringify({
-                name: userName,
-                email: userEmail,
-                phone: userPhone
-            }));
-        }
-    });
-    
-    // Copy TRC20 address function
-    function copyTRC20Address() {
-        const address = document.getElementById('trc20Address');
-        navigator.clipboard.writeText(address.textContent);
-        
-        // Show copied feedback
-        const copyBtn = document.querySelector('.copy-btn');
-        copyBtn.innerHTML = '<i class="fas fa-check"></i>';
-        setTimeout(() => {
-            copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
-        }, 2000);
-    }
-    
-    // Show success section with WhatsApp link
-    function showSuccessSection() {
-        document.getElementById('paymentInstructions').style.display = 'none';
-        const successSection = document.getElementById('paymentSuccess');
-        successSection.style.display = 'block';
-        
-        // Get stored user data
-        const userData = JSON.parse(sessionStorage.getItem('novaUser')) || {};
-        
-        // Create WhatsApp message
-        const whatsappMsg = `Hello NOVA Team,\n\n` +
-                           `I've just completed my payment for the NOVA Algorithm.\n\n` +
-                           `My Details:\n` +
-                           `Name: ${userData.name || 'Not provided'}\n` +
-                           `Email: ${userData.email || 'Not provided'}\n` +
-                           `WhatsApp: ${userData.phone || 'Not provided'}\n\n` +
-                           `Transaction ID: [Please provide your TXN ID]`;
-        
-        // Encode message for WhatsApp URL
-        const encodedMsg = encodeURIComponent(whatsappMsg);
-        
-        // Set WhatsApp link (replace YOUR_WHATSAPP_NUMBER with international format: 923001234567)
-        document.getElementById('whatsappLink').href = 
-            `https://wa.me/YOUR_WHATSAPP_NUMBER?text=${encodedMsg}`;
-    }
-    
-    // Initialize modal to reset on close
-    document.getElementById('paymentModal').addEventListener('hidden.bs.modal', function() {
-        document.getElementById('paymentForm').style.display = 'block';
-        document.getElementById('paymentInstructions').style.display = 'none';
-        document.getElementById('paymentSuccess').style.display = 'none';
-        this.querySelector('form').reset();
-    });
-</script>
+</div>
