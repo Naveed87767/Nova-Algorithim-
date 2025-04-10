@@ -1,389 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVA Algorithm | AI Trading Signals</title>
-    <meta name="description" content="Advanced AI-powered trading indicators for TradingView">
-    <link rel="icon" href="https://via.placeholder.com/50/FFD700/000000?text=NOVA">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Previous head content remains the same -->
+    <!-- Add this new style for payment section -->
     <style>
-        :root {
-            --gold: #FFD700;
-            --gold-dark: #FFC000;
-            --red: #FF0000;
-            --black: #000000;
-            --black-light: #1A1A1A;
-            --white: #FFFFFF;
-            --gradient: linear-gradient(135deg, #FFD700 0%, #FF0000 100%);
+        /* Binance Payment Section */
+        .binance-payment {
+            display: none;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 20px;
         }
-
-        body {
-            font-family: 'Kanit', sans-serif;
-            background-color: var(--black);
-            color: var(--white);
+        
+        .qr-code-container {
+            text-align: center;
+            margin: 20px 0;
         }
-
-        /* Navigation */
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.9);
-            border-bottom: 1px solid var(--gold);
+        
+        .qr-code {
+            max-width: 250px;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
         }
-
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.8rem;
+        
+        .wallet-address {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--gold);
             color: var(--gold);
-            letter-spacing: 1px;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            word-break: break-all;
         }
-
-        .nav-link {
-            color: var(--white);
-            font-weight: 500;
-        }
-
-        .nav-link:hover {
-            color: var(--gold);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Buttons */
-        .btn-gold {
+        
+        .copy-btn {
             background: var(--gold);
             color: var(--black);
-            font-weight: 600;
-            padding: 12px 30px;
-            border-radius: 8px;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 15px;
+            cursor: pointer;
             transition: all 0.3s;
         }
-
-        .btn-gold:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        
+        .copy-btn:hover {
+            background: var(--gold-dark);
         }
-
-        /* Sections */
-        .section-title {
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--gradient);
-        }
-
-        /* Trading Examples */
-        .trade-card {
-            background: rgba(0,0,0,0.5);
-            border: 1px solid var(--gold);
-            border-radius: 10px;
-            transition: all 0.3s;
-        }
-
-        .trade-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.1);
-        }
-
-        .profit-badge {
-            background: var(--red);
-            color: white;
-            font-weight: 600;
-        }
-
-        /* Testimonials */
-        .testimonial-card {
-            border-left: 3px solid var(--gold);
-        }
-
-        /* Pricing */
-        .pricing-card {
-            background: rgba(0,0,0,0.7);
-            border: 1px solid var(--gold);
-            transition: all 0.3s;
-        }
-
-        .pricing-card:hover {
-            transform: scale(1.03);
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--gold);
-        }
-
-        /* Payment Form */
-        .payment-form {
-            background: rgba(0,0,0,0.7);
-            border: 1px solid var(--gold);
-            border-radius: 10px;
-        }
-
-        .form-control {
-            background: rgba(0,0,0,0.5);
-            border: 1px solid var(--gold);
-            color: white;
-        }
-
-        .form-control:focus {
-            background: rgba(0,0,0,0.7);
-            color: white;
-            border-color: var(--gold);
-            box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--black);
-            border-top: 1px solid var(--gold);
+        
+        .payment-instructions {
+            margin-top: 20px;
+            text-align: left;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">NOVA</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#examples">Examples</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Previous body content remains the same until the payment modal -->
 
-    <!-- Hero Section -->
-    <section class="hero d-flex align-items-center">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h1 class="mb-4">AI-POWERED TRADING ALGORITHM</h1>
-                    <p class="lead mb-4">NOVA Algorithm delivers institutional-grade trading signals with 90%+ accuracy across all markets including Gold, Forex, and Indices.</p>
-                    <a href="#pricing" class="btn btn-gold">Get Instant Access</a>
-                </div>
-                <div class="col-lg-6 d-none d-lg-block">
-                    <img src="images/dashboard.webp" alt="NOVA Dashboard" class="img-fluid">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <h2 class="section-title mb-5">About NOVA Algorithm</h2>
-                    <p class="lead">NOVA is an advanced AI trading system that analyzes market data in real-time to identify high-probability trading opportunities.</p>
-                    <p>Our algorithm combines machine learning with traditional technical analysis to generate precise buy/sell signals with clear entry points, stop losses, and take profit targets.</p>
-                    <p>Key features include:</p>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-check text-gold me-2"></i> Real-time signal alerts</li>
-                        <li class="mb-2"><i class="fas fa-check text-gold me-2"></i> Multi-timeframe analysis</li>
-                        <li class="mb-2"><i class="fas fa-check text-gold me-2"></i> Risk management tools</li>
-                        <li class="mb-2"><i class="fas fa-check text-gold me-2"></i> Adaptive market scanning</li>
-                        <li class="mb-2"><i class="fas fa-check text-gold me-2"></i> 100% Non Repainting</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trading Examples -->
-    <section id="examples" class="py-5 bg-dark">
-        <div class="container">
-            <h2 class="section-title text-center mb-5">Recent Trading Examples</h2>
-            <div class="row g-4">
-                <!-- Example 1 -->
-                <div class="col-md-6">
-                    <div class="trade-card p-4 h-100">
-                        <div class="text-center mb-4">
-                           <img src="images/gold-trade.webp" 
-                                alt="Gold Trade Example - 450 Pips Profit" 
-                                class="img-fluid rounded"
-                                loading="lazy">
-     
-                            <div class="mt-3">
-                                <span class="badge bg-gold text-black me-2">BUY SIGNAL</span>
-                                <span class="badge profit-badge me-2">1000+ PIPS PROFIT</span>
-                            </div>
-                        </div>
-                        <h3 class="text-gold">Gold (XAU/USD) Trade</h3>
-                        <p>NOVA identified this buy opportunity when price broke through key resistance with strong volume:</p>
-                        <ul>
-                            <li>Entry: $2,850.20</li>
-                            <li>Take Profit: $2,950.20 (+1000 pips)</li>
-                            <li>Duration: 2 days</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Example 2 -->
-                <div class="col-md-6">
-                    <div class="trade-card p-4 h-100">
-                        <div class="text-center mb-4">
-                           <img src="images/gold-trade2.webp" 
-                                alt="Gold Trade Example - 450 Pips Profit" 
-                                class="img-fluid rounded"
-                                loading="lazy"> 
-                            
-                            <div class="mt-3">
-                                <span class="badge bg-gold text-black me-2">BUY SIGNAL</span>
-                                <span class="badge profit-badge me-2">500 PIPS PROFIT</span>
-                            </div>
-                        </div>
-                        <h3 class="text-gold">Gold (XAU/USD) Trade</h3>
-                        <p>NOVA caught this trend continuation with perfect timing during market open:</p>
-                        <ul>
-                            <li>Entry: $3,020.50</li>
-                            <li>Take Profit: $3,180.50 (+1600 pips)</li>
-                            <li>Duration: 3.5 days</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Client Reviews -->
-    <section id="reviews" class="py-5">
-        <div class="container">
-            <h2 class="section-title text-center mb-5">Client Reviews</h2>
-            <div class="row g-4">
-                <!-- Review 1 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="testimonial-card p-4 h-100">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle me-3" width="50" alt="">
-                            <div>
-                                <h5 class="mb-0">javaid Ahmad.</h5>
-                                <small>Day Trader</small>
-                            </div>
-                        </div>
-                        <p>"NOVA has transformed my trading. The gold signals are incredibly accurate, helping me make consistent profits."</p>
-                        <div class="text-warning">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Review 2 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="testimonial-card p-4 h-100">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle me-3" width="50" alt="">
-                            <div>
-                                <h5 class="mb-0">Sarah Iqbal.</h5>
-                                <small>Swing Trader</small>
-                            </div>
-                        </div>
-                        <p>"The 500 pip gold trade was amazing! NOVA helped me catch moves I would have otherwise missed."</p>
-                        <div class="text-warning">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Review 3 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="testimonial-card p-4 h-100">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="https://randomuser.me/api/portraits/men/75.jpg" class="rounded-circle me-3" width="50" alt="">
-                            <div>
-                                <h5 class="mb-0">Mohsin R.</h5>
-                                <small>Fund Manager</small>
-                            </div>
-                        </div>
-                        <p>"As a professional trader, I appreciate NOVA's institutional-grade analysis and clean signals."</p>
-                        <div class="text-warning">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Review 4 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="testimonial-card p-4 h-100">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="https://randomuser.me/api/portraits/women/68.jpg" class="rounded-circle me-3" width="50" alt="">
-                            <div>
-                                <h5 class="mb-0">Javeria Lodhi.</h5>
-                                <small>Position Trader</small>
-                            </div>
-                        </div>
-                        <p>"Worth every penny! The lifetime access is the best investment I've made in my trading career."</p>
-                        <div class="text-warning">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-5 bg-dark">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="pricing-card p-5 text-center">
-                        <h2 class="text-gold mb-4">LIFETIME ACCESS</h2>
-                        <div class="price mb-4">$70</div>
-                        <p class="mb-4">One-time payment for unlimited access to NOVA Algorithm</p>
-                        <button class="btn btn-gold w-100 py-3" data-bs-toggle="modal" data-bs-target="#paymentModal">BUY NOW</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Payment Modal -->
+    <!-- Modified Payment Modal -->
     <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content payment-form">
@@ -395,20 +70,54 @@
                     <form id="paymentForm">
                         <div class="mb-3">
                             <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" id="userName" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Email Address</label>
-                            <input type="email" class="form-control" required>
+                            <input type="email" class="form-control" id="userEmail" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" required>
+                            <input type="tel" class="form-control" id="userPhone" required>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-gold py-3">PROCEED TO PAYMENT</button>
                         </div>
                     </form>
+                    
+                    <!-- Binance TRC20 Payment Section (Initially hidden) -->
+                    <div id="binancePayment" class="binance-payment">
+                        <h4 class="text-center text-gold mb-4">Pay with USDT (TRC20)</h4>
+                        
+                        <div class="qr-code-container">
+                            <img src="images/binance-qr.webp" alt="Binance TRC20 QR Code" class="qr-code">
+                            <p class="mt-2">Scan QR code to pay $70 USDT</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <h5 class="text-gold">Wallet Address:</h5>
+                            <div class="wallet-address mb-2" id="trc20Address">TYsqSxWLuZimQ7Qe9mTsUZyPv2Lk7VgXeK</div>
+                            <button class="copy-btn" onclick="copyTRC20Address()">
+                                <i class="fas fa-copy"></i> Copy Address
+                            </button>
+                        </div>
+                        
+                        <div class="payment-instructions">
+                            <h5 class="text-gold">Payment Instructions:</h5>
+                            <ol>
+                                <li>Send exactly <strong>$70 USDT</strong> via TRC20 network</li>
+                                <li>After payment, email your <strong>Transaction ID</strong> to support@nova.com</li>
+                                <li>Include your name and email in the payment confirmation email</li>
+                                <li>You'll receive access within <strong>1 hour</strong> of payment confirmation</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <button class="btn btn-gold" onclick="submitPayment()">
+                                <i class="fas fa-check"></i> I've Completed Payment
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -424,13 +133,54 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Simple form submission handler
+        // Form submission handler
         document.getElementById('paymentForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // In a real implementation, you would process payment here
-            alert('Payment processing would happen here! Redirecting to payment gateway...');
-            // window.location.href = "your-payment-gateway-url.com";
+            
+            // Get user details
+            const userName = document.getElementById('userName').value;
+            const userEmail = document.getElementById('userEmail').value;
+            const userPhone = document.getElementById('userPhone').value;
+            
+            // Validate inputs
+            if(userName && userEmail && userPhone) {
+                // Hide the form
+                document.getElementById('paymentForm').style.display = 'none';
+                
+                // Show the Binance payment section
+                document.getElementById('binancePayment').style.display = 'block';
+                
+                // You can store these details or send them to your backend
+                console.log('User Details:', {userName, userEmail, userPhone});
+            }
         });
+        
+        // Copy TRC20 address function
+        function copyTRC20Address() {
+            const address = document.getElementById('trc20Address');
+            const textArea = document.createElement('textarea');
+            textArea.value = address.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            alert('TRC20 address copied to clipboard!');
+        }
+        
+        // Payment completion function
+        function submitPayment() {
+            alert('Thank you for your payment! Please check your email for further instructions.');
+            // Here you would typically:
+            // 1. Close the modal
+            // 2. Redirect or show a success message
+            // 3. Send the data to your backend for processing
+            const paymentModal = bootstrap.Modal.getInstance(document.getElementById('paymentModal'));
+            paymentModal.hide();
+        }
+        
+        // Replace with your actual TRC20 address
+        // document.getElementById('trc20Address').textContent = "YOUR_ACTUAL_TRC20_ADDRESS";
     </script>
 </body>
 </html>
